@@ -8,9 +8,9 @@ function home() {
                 <h1>REST Rant</h1>
                 <a href='/places'>Come see our places</a>
                 <div>
-                    <img src="http://placekitten.com/g/100/200" alt="Cat" />
+                    <img src="https://betterwithcats.net/wp-content/uploads/2022/08/Why-Are-Orange-Cats-So-Dumb-A-Myth-Or-A-Real-Thing-728x410.jpg" alt="Cat" />
                     <div>
-                        Cat by <a href="placekitten.com">placekitten</a>
+                        Cat by <a href="betterwithcats">betterwithcats</a>
                     </div>
                 </div>
                 <a href="/places">

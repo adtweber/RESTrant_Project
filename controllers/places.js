@@ -14,14 +14,35 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log(req.body);
-    req.body.founded = Number(req.body.founded);
+    if (req.body.pic == '') {
+        req.body.pic = '/images/2.jfif';
+    }
     db.Place.create(req.body)
         .then(() => {
             res.redirect('/places')
         })
         .catch(err => {
-            console.log('err', err)
-            res.render('error404')
+            if (err && err.name == 'ValidationError') {
+                let message = "Validation Errors: ";
+
+                if (err && err.name == 'ValidationError') {
+                    let message = 'Validation Error: '
+                    for (var field in err.errors) {
+                        message += ` ${field} was ${err.errors[field].value}. `
+                        message += `${err.errors[field].message}`
+                    }
+                    console.log('Validation error message', message)
+                    res.render('places/new', { message })
+                }
+                else {
+                    res.render('error404')
+                }
+
+                res.render('places/new', { message });
+            }
+            else {
+                res.render('error404')
+            }
         })
 })
 
@@ -38,6 +59,39 @@ router.get('/:id', (req, res) => {
         })
         .catch(err => {
             console.log('err', err)
+            res.render('error404')
+        })
+})
+
+router.get('/:id/comment', (req, res) => {
+    console.log(req.body);
+    db.Place.findById(req.params.id)
+        .then(place => {
+            res.render('places/newcomment', { place });
+        })
+})
+
+router.post('/:id/comment', (req, res) => {
+    console.log(req.body)
+    db.Place.findById(req.params.id)
+        .then(place => {
+            console.log("Place to add comment:")
+            console.log(place)
+            db.Comment.create(req.body)
+                .then(comment => {
+                    console.log("New comment:")
+                    console.log(comment)
+                    place.comments.push(comment.id)
+                    place.save()
+                        .then(() => {
+                            res.redirect(`/places/${req.params.id}`)
+                        })
+                })
+                .catch(err => {
+                    res.render('error404')
+                })
+        })
+        .catch(err => {
             res.render('error404')
         })
 })
