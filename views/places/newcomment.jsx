@@ -2,14 +2,6 @@ const React = require('react')
 const Def = require('../default.jsx')
 
 function comment_form({ place }) {
-    // let message = ''               
-    // if (data.message) {
-    //   message = (
-    //     <h4 className="alert-danger">
-    //       {data.message}
-    //     </h4>
-    //   )
-    // }
     return (
         <Def>
             <main>
@@ -32,7 +24,7 @@ function comment_form({ place }) {
                         <label htmlFor="rant">Rant</label>
                         <input type="checkbox" name="rant" id="rant" defaultChecked />
                     </div>
-                    <input className="btn btn-primary" type="submit" value="Add Place" />
+                    <input className="btn btn-primary" type="submit" value="Add Comment" />
                 </form>
             </main>
         </Def>
