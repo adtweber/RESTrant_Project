@@ -8,7 +8,10 @@ function home() {
                 <h1>REST Rant</h1>
                 <a href='/places'>Come see our places</a>
                 <div>
-                    <img src= "/images/chiafruitdrink.jpg" alt="chia fruit drink"></img>
+                    <img src="http://placekitten.com/g/100/200" alt="Cat" />
+                    <div>
+                        Cat by <a href="placekitten.com">placekitten</a>
+                    </div>
                 </div>
                 <a href="/places">
                     <button className="btn-primary">Places Page</button>
